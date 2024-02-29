@@ -32,7 +32,10 @@ GENERAL: This License shall be governed by and interpreted in accordance with th
 /*********************************************************
  * Configure the settings below
 **********************************************************/
-
+const ISSUE_NAME_1 = 'Technical Issue with Incoming Audio/Video' 
+const ISSUE_NAME_2 = 'Technical Issue with Outgoing Audio/Video'
+const ISSUE_NAME_3 = 'Can\'t connect to my meeting'
+const ISSUE_NAME_4 = 'Request for a technician'
 const config = {
   webexBotToken: '',            // WEBEX BOT TOKEN (learn more: https://developer.webex.com/bots)
   name: 'Report Issue',          // Name of the Button and Panel
@@ -43,10 +46,10 @@ const config = {
   panelId: 'feedback',
   start: {
     options: [
-      'Technical Issue with Incoming Audio/Video',  // IF YOU MODIFY THE OPTIONS YOU WILL NEED TO MODIFY LINES 256-270
-      'Technical Issue with Outgoing Audio/Video',
-      'Can\'t connect to my meeting',
-      'Request for a technician',
+      ISSUE_NAME_1,  //IF YOU MODIFY THE NUMBER OF OPTIONS (ADD/REMOVE) YOU WILL NEED TO MODIFY LINES 269-281
+      ISSUE_NAME_2,
+      ISSUE_NAME_3,
+      ISSUE_NAME_4,
     ]
   },
   form: {
@@ -263,19 +266,19 @@ async function sendInformation() {
   inputs.conferenceDetails = await getConferenceDetails();
 
   console.log(JSON.stringify(inputs))
-  if (inputs.category == 'Technical Issue with Incoming Audio/Video'){
-    mailer1.formattedBody("Webex Device Issue Reported", inputs.category, "**Identification:**"+identification+"\n"+"**Booking Id:**"+inputs.bookingId+"\n"+"**Call Details:**"+inputs.callDetails+"\n"+"**Conference Details:**"+inputs.conferenceDetails+"\n","").post()
+  if (inputs.category == ISSUE_NAME_1){
+    mailer1.formattedBody("Webex Device Issue Reported", inputs.category, "**Requester:** "+inputs.name+"\n"+ "**Identification:** "+inputs.identification+"\n"+"**Booking Id:** "+inputs.bookingId+"\n"+"**Call Details:** "+inputs.callDetails+"\n"+"**Conference Details:** "+inputs.conferenceDetails+"\n","").post()
   }
-  if (inputs.category == 'Technical Issue with Outgoing Audio/Video'){
-    mailer1.formattedBody("Webex Device Issue Reported", inputs.category, "**Identification:**"+identification+"\n"+"**Booking Id:**"+inputs.bookingId+"\n"+"**Call Details:**"+inputs.callDetails+"\n"+"**Conference Details:**"+inputs.conferenceDetails+"\n","").post()
+  if (inputs.category == ISSUE_NAME_2){
+    mailer1.formattedBody("Webex Device Issue Reported", inputs.category, "**Requester:** "+inputs.name+"\n"+ "**Identification:** "+inputs.identification+"\n"+"**Booking Id:** "+inputs.bookingId+"\n"+"**Call Details:** "+inputs.callDetails+"\n"+"**Conference Details:** "+inputs.conferenceDetails+"\n","").post()
 
   }
-  if (inputs.category == 'Can\'t connect to my meeting'){
-    mailer2.formattedBody("Webex Device Issue Reported", inputs.category, "**Identification:**"+identification+"\n"+"**Booking Id:**"+inputs.bookingId+"\n"+"**Call Details:**"+inputs.callDetails+"\n"+"**Conference Details:**"+inputs.conferenceDetails+"\n","").post()
+  if (inputs.category == ISSUE_NAME_3){
+    mailer2.formattedBody("Webex Device Issue Reported", inputs.category, "**Requester:** "+inputs.name+"\n"+ "**Identification:** "+inputs.identification+"\n"+"**Booking Id:** "+inputs.bookingId+"\n"+"**Call Details:** "+inputs.callDetails+"\n"+"**Conference Details:** "+inputs.conferenceDetails+"\n","").post()
 
   }
-  if (inputs.category == 'Request for a technician'){
-    mailer3.formattedBody("Webex Device Issue Reported", inputs.category, "**Identification:**"+identification+"\n"+"**Booking Id:**"+inputs.bookingId+"\n"+"**Call Details:**"+inputs.callDetails+"\n"+"**Conference Details:**"+inputs.conferenceDetails+"\n","").post()
+  if (inputs.category == ISSUE_NAME_4){
+    mailer3.formattedBody("Webex Device Issue Reported", inputs.category, "**Requester:** "+inputs.name+"\n"+ "**Identification:** "+inputs.identification+"\n"+"**Booking Id:** "+inputs.bookingId+"\n"+"**Call Details:** "+inputs.callDetails+"\n"+"**Conference Details:** "+inputs.conferenceDetails+"\n","").post()
   }
   alert('Success', 'Feedback sent, please wait for an agent to process', 10);
 }

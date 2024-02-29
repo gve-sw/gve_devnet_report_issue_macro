@@ -38,10 +38,14 @@ This is an update to the report-issue webex Macro created by William Mills. This
 
 ## Installation/Configuration
 Download the report-issue.js and GMM_LIB.js file and upload them to your Webex Room device.
-Configure the Report Issue Macro by changing the initial values, there are comments explaining each one.
+Configure the Report Issue Macro by changing the Issue names (ISSUE_NAME_1,ISSUE_NAME_2,ISSUE_NAME_3,ISSUE_NAME_4) (Optional), and initial values, there are comments explaining each one.
 ```
+const ISSUE_NAME_1 = 'Technical Issue with Incoming Audio/Video' 
+const ISSUE_NAME_2 = 'Technical Issue with Outgoing Audio/Video'
+const ISSUE_NAME_3 = 'Can\'t connect to my meeting'
+const ISSUE_NAME_4 = 'Request for a technician'
 const config = {
-  webexBotToken: 'EXAMPLE_BOT_TOKEN', // WEBEX BOT TOKEN (learn more: https://developer.webex.com/bots)
+  webexBotToken: '',            // WEBEX BOT TOKEN (learn more: https://developer.webex.com/bots)
   name: 'Report Issue',          // Name of the Button and Panel
   submitText: 'Submit Issue',       // Text displays on the submit button
   waitingText: 'Sending Feedback',
@@ -50,10 +54,10 @@ const config = {
   panelId: 'feedback',
   start: {
     options: [
-      'Technical Issue with Incoming Audio/Video',
-      'Technical Issue with Outgoing Audio/Video',
-      'Can\'t connect to my meeting',
-      'Request for a technician',
+      ISSUE_NAME_1,  //IF YOU MODIFY THE NUMBER OF OPTIONS (ADD/REMOVE) YOU WILL NEED TO MODIFY LINES 269-281
+      ISSUE_NAME_2,
+      ISSUE_NAME_3,
+      ISSUE_NAME_4,
     ]
   },
   form: {
